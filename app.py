@@ -36,15 +36,27 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+def create_model():
+    model = tf.keras.models.Sequential([
+        tf.keras.layers.Flatten(input_shape=(28, 28)),
+        tf.keras.layers.Dense(64, activation='relu'),
+        tf.keras.layers.Dense(32, activation='relu'),
+        tf.keras.layers.Dense(16, activation='relu'),
+        tf.keras.layers.Dense(10, activation='softmax')
+    ])
+    return model
+
 # Helper function to load model and data
 @st.cache_resource
 def load_all_assets():
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    model_path = os.path.join(base_dir, 'model.h5')
+    weights_path = os.path.join(base_dir, 'model.weights.h5')
     history_path = os.path.join(base_dir, 'history.pkl')
     metrics_path = os.path.join(base_dir, 'metrics.pkl')
     
-    model = tf.keras.models.load_model(model_path)
+    model = create_model()
+    model.load_weights(weights_path)
+    
     with open(history_path, 'rb') as f:
         history = pickle.load(f)
     with open(metrics_path, 'rb') as f:
