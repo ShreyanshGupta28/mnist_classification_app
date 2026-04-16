@@ -40,7 +40,7 @@ st.markdown("""
 @st.cache_resource
 def load_all_assets():
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    model_path = os.path.join(base_dir, 'model.keras')
+    model_path = os.path.join(base_dir, 'model.h5')
     history_path = os.path.join(base_dir, 'history.pkl')
     metrics_path = os.path.join(base_dir, 'metrics.pkl')
     
