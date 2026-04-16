@@ -1,6 +1,5 @@
 streamlit
-tensorflow-cpu
-keras>=3.14.0
+tensorflow-cpu==2.16.1
 numpy
 pillow
 matplotlib
